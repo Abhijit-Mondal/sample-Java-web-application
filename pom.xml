@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>in.abhi</groupId>
+  <artifactId>hello-world</artifactId>
+  <version>1.0.0</version>
+  <packaging>war</packaging>
+
+  <name>HelloWorld</name>
+
+  <properties>
+    <maven.compiler.release>11</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <!-- Servlet API is provided by EAP at runtime -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- If you use JSPs, uncomment this:
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>javax.servlet.jsp-api</artifactId>
+      <version>2.3.3</version>
+      <scope>provided</scope>
+    </dependency>
+    -->
+  </dependencies>
+
+  <build>
+    <!-- Makes the deployed file HelloWorld.war (nice clean context root) -->
+    <finalName>HelloWorld</finalName>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <release>${maven.compiler.release}</release>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.3.2</version>
+        <configuration>
+          <!-- Safe even if you use annotations instead of web.xml -->
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+          <!-- If your web resources are NOT in src/main/webapp, set warSourceDirectory -->
+          <!-- <warSourceDirectory>WebContent</warSourceDirectory> -->
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
